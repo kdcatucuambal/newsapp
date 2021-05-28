@@ -5,9 +5,10 @@ import { Category } from "../models/news.model";
 
 interface Props {
   setCategory(category: string): void;
+  setCountry(country: string): void;
 }
 
-const Form = ({ setCategory }: Props) => {
+const Form = ({ setCategory, setCountry }: Props) => {
   const options: Category[] = [
     { label: "General", value: "general" },
     { label: "Business", value: "business" },
@@ -17,36 +18,64 @@ const Form = ({ setCategory }: Props) => {
     { label: "Sports", value: "sports" },
     { label: "Technology", value: "technology" },
   ];
+  const countries: Category[] = [
+    { label: "Argentina", value: "ar" },
+    { label: "Australia", value: "au" },
+    { label: "Brazil", value: "br" },
+    { label: "Belgium", value: "be" },
+    { label: "Canada", value: "ca" },
+    { label: "Colombia", value: "co" },
+    { label: "China", value: "cn" },
+    { label: "United States", value: "us" },
+    { label: "France", value: "fr" },
+    { label: "Italy", value: "it" },
+    { label: "Japan", value: "jp" },
+    { label: "Norway", value: "no" },
+    { label: "New Zealand", value: "nz" },
+    { label: "Portugal", value: "pt" },
+    { label: "Mexico", value: "mx" },
+  ];
 
-  const [category, Select] = useSelect("general", options);
-
-  //   useEffect(() => {
-  //     setCategory(category);
-  //   }, [category]);
+  const [category, country, Select] = useSelect(
+    "general",
+    options,
+    "mx",
+    countries
+  );
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (category === "") return;
+    if (category === "" || country === "") return;
 
     setCategory(category);
+    setCountry(country);
   };
 
   return (
-    <div className={`row ${styles.searcher}`}>
-      <div className="col s12 m8 offset-m2">
-        <form onSubmit={handlerSubmit}>
-          <h2 className={styles.heading}>Find news by category</h2>
-          <Select></Select>
-          <div className="input-field col s12">
+    <div className="jumbotron mt-3 pb-5">
+      <form onSubmit={handlerSubmit}>
+        <div className="row">
+          {/* <div className="col-sm-12 col-md-5 mt-1">
+            <Select />
+          </div>
+          <div className="col-sm-12 col-md-5 mt-1">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Last name"
+            />
+          </div> */}
+          <Select />
+          <div className="col-sm-12 col-md-2 mt-1">
             <input
               type="submit"
-              className={`btn-large amber darken-2 ${styles["btn-block"]}`}
+              className="btn btn-secondary btn-block"
               value="Search.."
             />
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };

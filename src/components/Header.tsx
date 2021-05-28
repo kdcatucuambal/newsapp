@@ -6,10 +6,12 @@ type Props = {
 
 const Header = ({ title }: Props) => {
   return (
-    <nav className="nav-wrapper light-blue darken-3">
-      <a href="#!" className="brand-logo center">
-        {title}
-      </a>
+    <nav className="navbar navbar-dark bg-primary">
+      <div className="container-fluid">
+        <a className="navbar-brand mx-auto" href="">
+          <h1 className="text-center">{title}</h1>
+        </a>
+      </div>
     </nav>
   );
 };

@@ -7,7 +7,7 @@ type Props = {
 
 const News = ({ news }: Props) => {
   return (
-    <div className="row">
+    <div className="card-columns">
       {news.map((_new) => (
         <New key={_new.url} _new={_new}></New>
       ))}

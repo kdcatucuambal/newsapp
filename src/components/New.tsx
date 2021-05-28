@@ -1,39 +1,44 @@
-import React from "react";
 import { Article } from "../models/news.model";
+import ReactHtmlParser from "react-html-parser";
 type Props = {
   _new: Article;
 };
 const New = ({ _new }: Props) => {
   const image = _new.urlToImage ? (
-    <div className="card-image">
-      <img src={_new.urlToImage} alt={_new.title} />
-      <span className="card-title">{_new.source.name}</span>
-    </div>
+    <img src={_new.urlToImage} className="card-img-top" alt={_new.title} />
   ) : null;
-  return (
-    
 
-     
-    <div className="col s12 m6 l4">
-      <div className="card">
-        {image}
-        <div className="card-content">
-          <h3>{_new.title}</h3>
-          <p>{_new.description}</p>
-        </div>
-        <div className="card-action">
-          <a
-            href={_new.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="waves-effect waves-light btn"
-          >
-            View
-          </a>
-        </div>
+  const author =
+    _new.author == null ? null : (
+      <small className="text-muted">{_new.author + " - "}</small>
+    );
+  return (
+    <div className="card">
+      {image}
+      <div className="card-body">
+        <h5 className="card-title">
+          <strong>{_new.title}</strong>
+          <div className="mt-2">
+            {author}
+            <small className="text-muted">
+              {new Date(_new.publishedAt).toLocaleDateString()}
+            </small>
+          </div>
+        </h5>
+        <p className="card-text text-justify">
+          {ReactHtmlParser(_new.description)}
+        </p>
+
+        <a
+          href={_new.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary btn-block"
+        >
+          View
+        </a>
       </div>
     </div>
-  
   );
 };
 
