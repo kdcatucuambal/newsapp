@@ -10,36 +10,33 @@ interface Props {
 
 const Form = ({ setCategory, setCountry }: Props) => {
   const options: Category[] = [
-    { label: "General", value: "general" },
+    { label: "Breaking-News", value: "breaking-news" },
     { label: "Business", value: "business" },
     { label: "Entertainment", value: "entertainment" },
+    { label: "World", value: "world" },
+    { label: "Nation", value: "nation" },
     { label: "Health", value: "health" },
     { label: "Science", value: "science" },
     { label: "Sports", value: "sports" },
     { label: "Technology", value: "technology" },
   ];
+
+  // breaking-news, world, nation, business, technology, entertainment, sports, science and health.
   const countries: Category[] = [
-    { label: "Argentina", value: "ar" },
     { label: "Australia", value: "au" },
     { label: "Brazil", value: "br" },
     { label: "Belgium", value: "be" },
     { label: "Canada", value: "ca" },
-    { label: "Colombia", value: "co" },
-    { label: "China", value: "cn" },
     { label: "United States", value: "us" },
-    { label: "France", value: "fr" },
-    { label: "Italy", value: "it" },
-    { label: "Japan", value: "jp" },
-    { label: "Norway", value: "no" },
-    { label: "New Zealand", value: "nz" },
     { label: "Portugal", value: "pt" },
-    { label: "Mexico", value: "mx" },
+    { label: "United Kingdom", value: "gb" },
+    { label: "Peru", value: "pe" },
   ];
 
   const [category, country, Select] = useSelect(
-    "general",
+    "breaking-news",
     options,
-    "mx",
+    "us",
     countries
   );
 

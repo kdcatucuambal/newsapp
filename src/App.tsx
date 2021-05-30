@@ -4,14 +4,15 @@ import Form from "./components/Form";
 import News from "./components/News";
 import { Article } from "./models/news.model";
 function App() {
-  const [category, setCategory] = useState<string>("");
-  const [country, setCountry] = useState<string>("mx");
+  const [category, setCategory] = useState<string>("breaking-news");
+  const [country, setCountry] = useState<string>("us");
   const [news, setNews] = useState<Article[]>([]);
 
   useEffect(() => {
     const consultAPI = async () => {
-      const url = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=f9f1b47fc8434d3b93531decd59562a5`;
-      const response = await fetch(url);
+      const urlgnews = `https://gnews.io/api/v4/top-headlines?country=${country}&topic=${category}&token=b958e3795886d02aab779d15bc1dc480`;
+      //const url = `http://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=f9f1b47fc8434d3b93531decd59562a5`;
+      const response = await fetch(urlgnews);
       const responseJSON = await response.json();
       const news: Article[] = responseJSON.articles;
       setNews(news);

@@ -4,16 +4,16 @@ type Props = {
   _new: Article;
 };
 const New = ({ _new }: Props) => {
-  const image = _new.urlToImage ? (
-    <img src={_new.urlToImage} className="card-img-top" alt={_new.title} />
+  const image = _new.image ? (
+    <img src={_new.image} className="card-img-top" alt={_new.title} />
   ) : null;
 
   const author =
-    _new.author == null ? null : (
-      <small className="text-muted">{_new.author + " - "}</small>
+    _new.source.name == null ? null : (
+      <small className="text-muted">{_new.source.name + " - "}</small>
     );
   return (
-    <div className="card">
+    <div className="card" style={{ cursor: "pointer" }}>
       {image}
       <div className="card-body">
         <h5 className="card-title">
